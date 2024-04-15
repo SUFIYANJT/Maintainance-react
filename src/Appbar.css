@@ -23,6 +23,7 @@ nav .custom-logo {
 }
 
 .icons {
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end; /* Align items to the right */
@@ -33,7 +34,8 @@ nav .custom-logo {
   margin-left: 10px; /* Add some margin to separate menuDivs */
 }
 .menuDiv1 {
-  margin-left: 10px; /* Add some margin to separate menuDivs */
+  margin-left: 10px; 
+  margin-top: 10px;/* Add some margin to separate menuDivs */
 }
 
 .icon {
@@ -48,6 +50,7 @@ nav .custom-logo {
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  color: blue;
 }
 
 nav .nav-wrapper ul {
@@ -104,6 +107,7 @@ li {
 
 .menu {
   position: absolute;
+  color: blue;
   top: 110%;
   /* Position the menu just below the menu button */
   box-sizing: border-box;
@@ -152,7 +156,7 @@ li {
 }
 
 .form3 input[type='search'] {
-  position: relative;
+  position: absolute;
   width: 100%;
   z-index: 10;
   height: 100%;
@@ -167,4 +171,5 @@ li {
 
 img {
   border-radius: 50%;
+ 
 }

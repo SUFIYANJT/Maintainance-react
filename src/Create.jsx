@@ -1,8 +1,11 @@
 import React from "react";
+import  ReactDOM, { render }  from "react-dom";
 import './App.css'
 import './Create.css'
 import 'materialize-css/dist/css/materialize.min.css';
+
 import FloatingActionBar from "./components/FloatingActionBar";
+
 
 function Create() {
     console.log("rendering")

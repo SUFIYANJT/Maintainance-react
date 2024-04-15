@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Appbar.css';
 import { FaBars, FaSearch } from 'react-icons/fa';
 
-function Appbar({ navigateTo, progress }) {
+function Appbar({ currentPage, navigateTo, progress }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
 
@@ -88,6 +88,7 @@ function Appbar({ navigateTo, progress }) {
               Review
             </Link>
           </li>
+         
         </ul>
         <div className="icons">
           <div className='menuDiv'>
@@ -95,8 +96,21 @@ function Appbar({ navigateTo, progress }) {
             {isMenuOpen && (
               <div className="menu">
                 {/* Add your menu items here */}
-                <p>logout</p>
-                <p>history</p>
+                <p><Link to="/LoginPage" className="a">Logout</Link></p>
+                <p><Link
+              onClick={() => {
+                progress(100);
+                setTimeout(() => {
+                  console.log("navigating...");
+                  navigateTo('history');
+                  progress(0);
+                }, 1000);
+              }}
+              className="a"
+              to="/history"
+            >
+              History
+            </Link></p>
               </div>
             )}
           </div>

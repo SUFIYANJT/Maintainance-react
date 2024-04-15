@@ -1,5 +1,7 @@
+// App.js
+
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import LoginPage from './LoginPage';
 import Create from './Create';
@@ -7,34 +9,31 @@ import Existing from './Existing';
 import Issued from './Issued';
 import Pending from './Pending';
 import Review from './Review';
+import History from './history';
+import HistoryDetails from './HistoryDetails'; // Import the HistoryDetails component
 import Appbar from './Appbar';
-import Skeleton from '@mui/material/Skeleton'; // Import Skeleton from @mui/material
+import Skeleton from '@mui/material/Skeleton';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentPage, setCurrentPage] = useState('existing');
-    const [isLoading, setIsLoading] = useState(false); // Initialize as false
+    const [isLoading, setIsLoading] = useState(false);
     const [progress, setProgress] = useState(0);
 
     const handleLogin = () => {
-        setIsLoading(true); // Start loading when login process starts
+        setIsLoading(true);
         setTimeout(() => {
             setIsLoggedIn(true);
-            setIsLoading(false); // Set loading to false once login is successful
+            setIsLoading(false);
         }, 1000);
-    };
-
-    const navigateTo = (page) => {
-        setCurrentPage(page);
     };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Simulate fetching data
-                setIsLoading(true); // Start loading
+                setIsLoading(true);
                 setTimeout(() => {
-                    setIsLoading(false); // Set loading to false after data is fetched
+                    setIsLoading(false);
                 }, 1000);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -46,6 +45,10 @@ function App() {
 
     const handleProgress = (val) => {
         setProgress(val);
+    };
+
+    const navigateTo = (page) => {
+        setCurrentPage(page);
     };
 
     return (
@@ -62,14 +65,16 @@ function App() {
                         </>
                     ) : (
                         isLoggedIn ? (
-                            <>
-                                {currentPage === 'home' && <Home progress={handleProgress} />}
-                                {currentPage === 'create' && <Create progress={handleProgress} />}
-                                {currentPage === 'existing' && <Existing progress={handleProgress} />}
-                                {currentPage === 'issued' && <Issued progress={handleProgress} />}
-                                {currentPage === 'pending' && <Pending />}
-                                {currentPage === 'review' && <Review />}
-                            </>
+                            <Routes>
+                                <Route path="/" element={<Home progress={handleProgress} />} />
+                                <Route path="/create" element={<Create progress={handleProgress} />} />
+                                <Route path="/existing" element={<Existing progress={handleProgress} />} />
+                                <Route path="/issued" element={<Issued progress={handleProgress} />} />
+                                <Route path="/history" element={<History progress={handleProgress} />} />
+                                <Route path="/pending" element={<Pending />} />
+                                <Route path="/review" element={<Review />} />
+                                <Route path="/history-details/:id" element={<HistoryDetails />} />
+                            </Routes>
                         ) : (
                             <LoginPage onLogin={handleLogin} progress={handleProgress} />
                         )
