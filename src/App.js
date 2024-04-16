@@ -71,7 +71,7 @@ function App() {
                                 <Route path="/existing" element={<Existing progress={handleProgress} />} />
                                 <Route path="/issued" element={<Issued progress={handleProgress} />} />
                                 <Route path="/history" element={<History progress={handleProgress} />} />
-                                <Route path="/pending" element={<Pending />} />
+                                <Route path="/pending" element={<Pending progress={handleProgress} />} />
                                 <Route path="/review" element={<Review />} />
                                 <Route path="/history-details/:id" element={<HistoryDetails />} />
                             </Routes>
